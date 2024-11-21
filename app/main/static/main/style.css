@@ -1,0 +1,27 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    background-color: #fff;
+    color: #000;
+}
+
+.content {
+    margin-left: 380px; 
+    padding: 20px;
+}
+
+
+.sidebar-custom {
+    position: fixed; /* Фиксируем боковую панель */
+    top: 0;
+    left: 0;
+    height: 100%; /* Высота на весь экран */
+    width: 380px; /* Ширина панели */
+    z-index: 1000; /* Чтобы панель была поверх других элементов */
+    overflow-y: auto; /* Добавляем прокрутку, если контент превышает высоту экрана */
+}
