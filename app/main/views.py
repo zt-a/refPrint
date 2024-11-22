@@ -19,7 +19,7 @@ def home(request):
                 'Новый заказ!',
                 f'Заказ от {order.name}:\nТема: {order.topic}\nОписание: {order.description}',
                 settings.DEFAULT_FROM_EMAIL,  # От кого
-                ['zt20061113@gmail.com', 'adulovbilal001@gmail.com', 'nazilova001@gmail.com'],
+                ['zt20061113@gmail.com', 'adulovbilal001@gmail.com', 'nazilova001@gmail.com', 'tunukaijanyshova@gmail.com'],
                 fail_silently=False,
             )
             
