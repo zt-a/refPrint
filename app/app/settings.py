@@ -11,6 +11,12 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import load_dotenv
+import os
+
+# Загрузка .env файла
+load_dotenv()
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,12 +26,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-4enu-mjt%zpehqqh$mu4=38x96@j9ahkzu3x-yu5ebleijqsg0'
+SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-4enu-mjt%zpehqqh$mu4=38x96@j9ahkzu3x-yu5ebleijqsg0') 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
 
-ALLOWED_HOSTS = []
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
+
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -75,24 +83,8 @@ WSGI_APPLICATION = 'app.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
 
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'refPrint',  # Имя вашей базы данных
-#         'USER': 'ilya',      # Имя пользователя PostgreSQL
-#         'PASSWORD': 'devZhyrgal006',  # Пароль пользователя
-#         'HOST': 'localhost',   # Адрес сервера базы данных
-#         'PORT': '5432',        # Порт PostgreSQL (по умолчанию)
-#     }
-# }
 
 
 
@@ -130,7 +122,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -138,11 +129,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'zt20061113@gmail.com'  # Ваш email
-EMAIL_HOST_PASSWORD = 'kgyeeiwxktjurnne'  # Ваш пароль
-DEFAULT_FROM_EMAIL = 'zt20061113@gmail.com'
+if DEBUG:
+    from app.localsettings import *
+else:
+    from app.prodsettings import *

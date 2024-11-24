@@ -31,7 +31,8 @@ class Order(models.Model):
 
     # Поле для статуса "Выполнен"
     is_completed = models.BooleanField(default=False, verbose_name="Выполнен")
-    deadline = models.DateField(null=True, blank=True, verbose_name="Срок")
+    deadline = models.DateTimeField(null=True, blank=True, verbose_name="Срок")
+    paid = models.BooleanField(default=False, verbose_name="Оплачен")
 
     # Временные метки
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создание")
