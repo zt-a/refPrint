@@ -28,11 +28,17 @@ DATABASES = {
     }
 }
 
-STATIC_URL = 'static/'
-STATIC_ROOT = os.getenv('STATIC_ROOT', os.path.join(BASE_DIR, 'static'))
+STATIC_URL = '/static/'
+#STATIC_ROOT = os.getenv('STATIC_ROOT', os.path.join(BASE_DIR, 'static'))
+STATIC_ROOT = '/var/www/html/static'
+STATICFILES_DIRS = [
+	os.path.join(BASE_DIR, "static"),
+#	'/var/www/html/static',
+]
 
-MEDIA_URL = 'media/'
-MEDIA_ROOT = os.getenv('MEDIA_ROOT', os.path.join(BASE_DIR, 'media'))
+MEDIA_URL = '/media/'
+#MEDIA_ROOT = os.getenv('MEDIA_ROOT', os.path.join(BASE_DIR, 'media'))
+MEDIA_ROOT = '/var/www/html/media/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = os.getenv('EMAIL_HOST', 'smtp.gmail.com')
