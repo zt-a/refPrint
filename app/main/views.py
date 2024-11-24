@@ -5,6 +5,8 @@ from .models import Order
 from .forms import OrderForm
 from django.contrib import messages
 from .utils import send_telegram_notification
+from .serializers import OrderSerializer
+from rest_framework.viewsets import ModelViewSet
 
 def home(request):
     if request.method == 'POST':
@@ -35,3 +37,9 @@ def home(request):
 
 def success_page(request):
     return render(request, 'main/success_page.html')  # Укажите свой путь для страницы успешной отправки
+
+
+
+class OrderViewSet(ModelViewSet):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
