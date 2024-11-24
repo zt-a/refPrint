@@ -6,7 +6,6 @@ async def send_telegram_bot(message):
 
     # chat_id может быть как ID чата, так и username группы
     chat_ids = [
-        '1271362249',
         '-1002193449783',
         '5380811884',
         '1899271190', 
